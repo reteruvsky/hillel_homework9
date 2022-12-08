@@ -1,9 +1,10 @@
 public class ArrayValueCalculator {
 
     public static int doCalc(String[][] array) throws ArraySizeException, ArrayDataException {
-        if (array.length != 4) {
-            System.out.println("Неверный размер переданного массива!");
-            throw new ArraySizeException();
+        for (int i = 0; i < array.length; i++) {
+            if (array.length != 4 && array[i].length != 4) {
+                throw new ArraySizeException("Wrong size of passed array!");
+            }
         }
 
         int sumArray = 0;
@@ -14,10 +15,9 @@ public class ArrayValueCalculator {
                 try {
                     sumArray += Integer.parseInt(array[i][j]);
                 } catch (Exception e) {
-                    System.out.println("Элемент не является цифрой! " +
-                            "Массив: " + j +
-                            " Ячейка: " + i);
-                    throw new ArrayDataException();
+                    throw new ArrayDataException("This element is not number! " +
+                            "Array: " + j +
+                            " Cell: " + i);
                 }
             }
         }
